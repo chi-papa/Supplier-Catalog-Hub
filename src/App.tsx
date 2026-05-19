@@ -26,6 +26,10 @@ const STORAGE_KEY_SUPPLIERS = "catalog_suppliers";
 const STORAGE_KEY_MONITORING = "catalog_monitoring_data";
 const STORAGE_KEY_HISTORY = "catalog_monitoring_history";
 
+const generateId = (): string => {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+};
+
 const INITIAL_DATA: Supplier[] = [
   { id: 1, kana: "あ", name: "アキレス", desc: "主な製品：ファインシェード（ハウス用遮光剤）、ファインシェード除去剤", links: [{ label: "公式サイト", url: "https://achilles.jp", primary: true }, { label: "Webカタログ", url: "https://achilles.jp", primary: false }] },
   { id: 2, kana: "あ", name: "安全興業", desc: "主な製品：採集コンテナ、あぜ板、雨水タンク、砂利どめーる", links: [{ label: "公式サイト", url: "https://anzenkogyo.com", primary: true }, { label: "Webカタログ", url: "https://anzenkogyo.com", primary: false }] },
@@ -167,7 +171,7 @@ export default function App() {
           detail = `変更検知: ${prev.etag !== result.etag ? "ETag " : ""}${prev.contentLength !== result.contentLength ? "サイズ " : ""}が異なります`;
           
           newHistory.unshift({
-            id: crypto.randomUUID(),
+            id: generateId(),
             supplierName: task.supplier.name,
             url: task.link.url,
             type: "changed",
@@ -182,7 +186,7 @@ export default function App() {
       } else {
         // Log error
         newHistory.unshift({
-          id: crypto.randomUUID(),
+          id: generateId(),
           supplierName: task.supplier.name,
           url: task.link.url,
           type: "error",
