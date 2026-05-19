@@ -1,0 +1,6 @@
+{
+  "name": "メーカーカタログ監視システム",
+  "description": "メーカーサイトやPDFカタログの更新を自動監視し、仕様変更を早期検知するシステム",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
